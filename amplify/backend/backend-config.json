@@ -1,37 +1,71 @@
 {
-  "function": {
-    "corsproxyFunction": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "amplifycorsproxyaxiosLayer",
-          "attributes": [
-            "Arn"
-          ]
-        }
-      ]
-    },
-    "amplifycorsproxyaxiosLayer": {
-      "providerPlugin": "awscloudformation",
-      "service": "LambdaLayer",
-      "build": true
-    }
-  },
   "api": {
     "corsproxy": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
-          "category": "function",
-          "resourceName": "corsproxyFunction",
           "attributes": [
             "Name",
             "Arn"
-          ]
+          ],
+          "category": "function",
+          "resourceName": "corsproxyFunction"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "amplifycorsproxyaxiosLayer": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer"
+    },
+    "corsproxyFunction": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "amplifycorsproxyaxiosLayer"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_amplifycorsproxyaxiosLayer_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "amplifycorsproxyaxiosLayer"
+        }
+      ]
+    },
+    "AMPLIFY_function_amplifycorsproxyaxiosLayer_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "amplifycorsproxyaxiosLayer"
+        }
+      ]
+    },
+    "AMPLIFY_function_corsproxyFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "corsproxyFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_corsproxyFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "corsproxyFunction"
         }
       ]
     }

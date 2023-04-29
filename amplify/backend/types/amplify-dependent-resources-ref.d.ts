@@ -1,20 +1,21 @@
 export type AmplifyDependentResourcesAttributes = {
-    "function": {
-        "corsproxyFunction": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
-        "amplifycorsproxyaxiosLayer": {
-            "Arn": "string"
-        }
-    },
-    "api": {
-        "corsproxy": {
-            "RootUrl": "string",
-            "ApiName": "string",
-            "ApiId": "string"
-        }
+  "api": {
+    "corsproxy": {
+      "ApiId": "string",
+      "ApiName": "string",
+      "RootUrl": "string"
     }
+  },
+  "function": {
+    "amplifycorsproxyaxiosLayer": {
+      "Arn": "string"
+    },
+    "corsproxyFunction": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    }
+  }
 }
